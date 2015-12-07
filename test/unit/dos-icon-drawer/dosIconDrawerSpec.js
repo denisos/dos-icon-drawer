@@ -12,23 +12,20 @@ describe('', function() {
 
   beforeEach(function() {
 
-  // Get module
-  module = angular.module('dosIconDrawer');
-  dependencies = module.requires;
+      // Get module
+      module = angular.module('dosIconDrawer');
+      dependencies = module.requires;
   });
 
   it('should load config module', function() {
-    expect(hasModule('dosIconDrawer.config')).to.be.ok;
+    expect(hasModule('dosIconDrawer.config')).toBe(true);
   });
 
-  
 
-  
+
   it('should load directives module', function() {
-    expect(hasModule('dosIconDrawer.directives')).to.be.ok;
+    expect(hasModule('dosIconDrawer.directives')).toBe(true);
   });
-  
 
-  
 
 });

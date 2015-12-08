@@ -26,6 +26,14 @@
             template: '<div class="dos-icon-drawer" ng-class="{open: vm.open}">' +
                             '<div class="dos-icon-drawer-controls">' +
                                 '<div class="iconbar">' +
+                                    '<ul><li class="opener">' +
+                                        '<a ng-click="vm.toggleOpen()">' +
+                                            '<span class="fui-arrow-left open-control"></span>' +
+                                            '<span class="fui-arrow-right close-control"></span>' +
+                                        '</a>' +
+                                    '</li></ul>' +
+                                    '<ul class="" ng-class="" ng-transclude>' +
+                                    '</ul>' +
                                 '</div>' +
                                 '<div class="icon-drawer-toggle" ng-click="vm.toggleOpen()">' +
                                 '</div>' +
@@ -34,7 +42,7 @@
                                 '<div class="drawer-panel"' +
                                     'ng-repeat="panel in vm.panels"'  +
                                     'ng-class="{active: panel.active}"' +
-    //                                'dos-?-content-transclude="panel">' +
+                                    'dos-icon-drawer-content-transclude="panel">' +
                                 '</div>' +
                             '</div>' +
                        '</div>'
@@ -47,12 +55,17 @@
     function DosIconDrawerController($scope, $element) {
         var vm = this;
 
-        vm.panels = [];
+        // public properties
+        vm.panels = [];   // list of content panels within drawer
         vm.open = false;  // initially closed
 
+        // public api
         vm.toggleOpen = toggleOpen;
         vm.select = select;
+        vm.addPanel = addPanel;
+        vm.removePanel = removePanel;
 
+        // private methods (which may or may not be exposed as public)
         /*
          * handle drawer open close arrows, when opened show first
          */
@@ -90,6 +103,9 @@
             // trigger open event passing panel.id
         }
 
+        /**
+         * add a panel to the drawers panels list
+         */
         function addPanel(panel) {
             vm.panels.push(panel);
             if (vm.panels.length === 1) {
@@ -97,6 +113,9 @@
             }
         }
 
+        /**
+         * remove a panel from the drawers panels list
+         */
         function removePanel(panel) {
             var index = vm.panels.indexOf(panel);
             //Select a new drawer if the drawer to be removed is selected

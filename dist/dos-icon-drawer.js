@@ -26,6 +26,94 @@
     'use strict';
 
     angular.module('dosIconDrawer.directives')
+           .directive('dosDrawerPanel', dosDrawerPanel);
+
+    // no inject needed dosDrawerPanel.$inject = [];
+
+    function dosDrawerPanel() {
+        return {
+          require: '^dosIconDrawer',
+          restrict: 'E',
+          replace: true,
+          transclude: true,
+          scope: {
+            onSelect: '&select' // optional callback for when panel selected
+          },
+          controller: function() {
+            //Empty controller so other directives can require being 'under' a panel
+          },
+          template: '<li ng-class="{active: active}">' +
+                        '<a ng-click="select()" class="{{icon}}">' +
+                            '<span class="title">{{iconTitle}}</span>' +
+                        '</a>' +
+                    '</li>',
+          compile: function(elm, attrs, transclude) {
+            return function postLink(scope, elm, attrs, iconDrawerCtrl) {
+
+                scope.active = false; // default value
+                scope.$watch('active', function(active) {
+                    if (active) {
+                        // tell parent this is active
+                        iconDrawerCtrl.select(scope);
+
+                        // call the callback
+                        if (angular.isFunction(scope.onSelect)) {
+                            scope.onSelect();
+                        }
+                    }
+                });
+
+                // put panel attribute iconTitle on scope for view
+                if (attrs.iconTitle) {
+                    scope.iconTitle = attrs.iconTitle;
+                }
+
+                // put panel attribute icon on scope for view
+                if (attrs.icon) {
+                    scope.icon = attrs.icon;
+                }
+
+                // put slide id attribute icon on scope for view
+                if (attrs.panelId) {
+                    scope.panelId = attrs.panelId;
+                }
+
+                // if you ever wanted to support disabled drawer panels then
+                //    pass in disabled flag in attrs e.g. attrs.disabled
+                //     and set scope variable e.g. "disabled" from that;
+
+                /*
+                 * user selected this slide
+                 */
+                scope.select = function() {
+                    scope.active = true;
+                    // note: if was supporting disabled then only set active if not disabled
+                };
+
+                // add this panel scope to parents list
+                iconDrawerCtrl.addPanel(scope);
+                scope.$on('$destroy', function() {
+                    iconDrawerCtrl.removePanel(scope);
+                });
+
+                // transclude the collection of sibling elements to build the
+                //  icon bar tabs
+                transclude(scope.$parent, function(clone) {
+                  scope.contentElement = clone;
+                });
+
+            };
+          }
+        };
+}
+
+})(angular);
+
+(function (angular) {
+
+    'use strict';
+
+    angular.module('dosIconDrawer.directives')
            .directive('dosIconDrawer', dosIconDrawer)
            .controller('DosIconDrawerController', DosIconDrawerController);
 
@@ -48,6 +136,14 @@
             template: '<div class="dos-icon-drawer" ng-class="{open: vm.open}">' +
                             '<div class="dos-icon-drawer-controls">' +
                                 '<div class="iconbar">' +
+                                    '<ul><li class="opener">' +
+                                        '<a ng-click="vm.toggleOpen()">' +
+                                            '<span class="fui-arrow-left open-control"></span>' +
+                                            '<span class="fui-arrow-right close-control"></span>' +
+                                        '</a>' +
+                                    '</li></ul>' +
+                                    '<ul class="" ng-class="" ng-transclude>' +
+                                    '</ul>' +
                                 '</div>' +
                                 '<div class="icon-drawer-toggle" ng-click="vm.toggleOpen()">' +
                                 '</div>' +
@@ -56,7 +152,7 @@
                                 '<div class="drawer-panel"' +
                                     'ng-repeat="panel in vm.panels"'  +
                                     'ng-class="{active: panel.active}"' +
-    //                                'dos-?-content-transclude="panel">' +
+                                    'dos-icon-drawer-content-transclude="panel">' +
                                 '</div>' +
                             '</div>' +
                        '</div>'
@@ -69,12 +165,17 @@
     function DosIconDrawerController($scope, $element) {
         var vm = this;
 
-        vm.panels = [];
+        // public properties
+        vm.panels = [];   // list of content panels within drawer
         vm.open = false;  // initially closed
 
+        // public api
         vm.toggleOpen = toggleOpen;
         vm.select = select;
+        vm.addPanel = addPanel;
+        vm.removePanel = removePanel;
 
+        // private methods (which may or may not be exposed as public)
         /*
          * handle drawer open close arrows, when opened show first
          */
@@ -112,6 +213,9 @@
             // trigger open event passing panel.id
         }
 
+        /**
+         * add a panel to the drawers panels list
+         */
         function addPanel(panel) {
             vm.panels.push(panel);
             if (vm.panels.length === 1) {
@@ -119,6 +223,9 @@
             }
         }
 
+        /**
+         * remove a panel from the drawers panels list
+         */
         function removePanel(panel) {
             var index = vm.panels.indexOf(panel);
             //Select a new drawer if the drawer to be removed is selected
@@ -139,6 +246,33 @@
                 panel.active = false;
             });
         }
+    }
+
+})(angular);
+
+(function (angular) {
+
+    'use strict';
+
+    angular.module('dosIconDrawer.directives')
+           .directive('dosIconDrawerContentTransclude', dosIconDrawerContentTransclude);
+
+    dosIconDrawerContentTransclude.$inject = ['$parse'];
+
+    function dosIconDrawerContentTransclude($parse) {
+        return {
+          restrict: 'A',
+          link: function(scope, elm, attrs) {
+            scope.$watch($parse(attrs.dosIconDrawerContentTransclude), function(panel) {
+              // elm is a panel
+              elm.html('');
+              if (panel) {
+                  // transclude (append) the content
+                  elm.append(panel.contentElement);
+              }
+            });
+          }
+        };
     }
 
 })(angular);

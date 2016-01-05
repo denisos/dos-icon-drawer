@@ -2,6 +2,7 @@
 
 $drawer-closed-width: 65px;
 $drawer-open-width: 300px;
+$drawer-icon-bar-color: black;
 
 /* the main icon drawer control */
 .dos-icon-drawer {
@@ -11,11 +12,10 @@ $drawer-open-width: 300px;
   top:100px;
   height: 100%;
   z-index: 1001;
-  background-color: grey;
+  background-color: $drawer-icon-bar-color;
   width: $drawer-closed-width;
+  transition: width .4s, padding-right .1s, background-color .4s; 
   
-  /* border: 1px solid red;     */
-
   &.open {
     width: $drawer-open-width;
   }
@@ -33,42 +33,45 @@ $drawer-open-width: 300px;
 /* icon bar controls */
 .dos-icon-drawer-controls {
   width: $drawer-closed-width;
+  height: 100%;
   float: left;
+  position: relative;     
 
-  position: relative; 
-  
-// border: 1px solid blue;     
-
+  // icons and title links
   .iconbar {
     background-color: inherit;
     
     border: 1px solid green;   /*  */
 
-    li {
-      text-align: center;
-      list-style-type: none;
+    ul {
+      padding: 0;
 
-      a {
-        padding: 16px 10px;
-        min-width: 64px;
-        color: blue;
+      li {
+        text-align: center;
+        list-style-type: none;
 
-        &:hover,
-        &:active {
-          color: #fff;
-          background-color: black;
-        }
+        a {
+          padding: 16px 10px;
+          min-width: 64px;
+          color: blue;
 
-        .badge {
-          position:absolute;
-          top: 6px;
-          left: 36px;
-        }
+          &:hover,
+          &:active {
+            color: #fff;
+            cursor: pointer;
+          }
 
-        .title {
-          font-size: 12px;
-          display: block;
-          overflow: hidden;
+          .badge {
+            position:absolute;
+            top: 6px;
+            left: 36px;
+          }
+
+          .title {
+            font-size: 12px;
+            display: block;
+            overflow: hidden;
+          }
         }
       }
     }

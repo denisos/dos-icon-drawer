@@ -7,8 +7,9 @@
   top: 100px;
   height: 100%;
   z-index: 1001;
-  background-color: grey;
+  background-color: black;
   width: 65px;
+  transition: width .4s, padding-right .1s, background-color .4s;
   /* border: 1px solid red;     */ }
   .dos-icon-drawer.open {
     width: 300px; }
@@ -23,30 +24,33 @@
 /* icon bar controls */
 .dos-icon-drawer-controls {
   width: 65px;
+  height: 100%;
   float: left;
   position: relative; }
   .dos-icon-drawer-controls .iconbar {
     background-color: inherit;
     border: 1px solid green;
     /*  */ }
-    .dos-icon-drawer-controls .iconbar li {
-      text-align: center;
-      list-style-type: none; }
-      .dos-icon-drawer-controls .iconbar li a {
-        padding: 16px 10px;
-        min-width: 64px;
-        color: blue; }
-        .dos-icon-drawer-controls .iconbar li a:hover, .dos-icon-drawer-controls .iconbar li a:active {
-          color: #fff;
-          background-color: black; }
-        .dos-icon-drawer-controls .iconbar li a .badge {
-          position: absolute;
-          top: 6px;
-          left: 36px; }
-        .dos-icon-drawer-controls .iconbar li a .title {
-          font-size: 12px;
-          display: block;
-          overflow: hidden; }
+    .dos-icon-drawer-controls .iconbar ul {
+      padding: 0; }
+      .dos-icon-drawer-controls .iconbar ul li {
+        text-align: center;
+        list-style-type: none; }
+        .dos-icon-drawer-controls .iconbar ul li a {
+          padding: 16px 10px;
+          min-width: 64px;
+          color: blue; }
+          .dos-icon-drawer-controls .iconbar ul li a:hover, .dos-icon-drawer-controls .iconbar ul li a:active {
+            color: #fff;
+            cursor: pointer; }
+          .dos-icon-drawer-controls .iconbar ul li a .badge {
+            position: absolute;
+            top: 6px;
+            left: 36px; }
+          .dos-icon-drawer-controls .iconbar ul li a .title {
+            font-size: 12px;
+            display: block;
+            overflow: hidden; }
   .dos-icon-drawer-controls .icon-drawer-toggle {
     height: 100%;
     cursor: pointer;

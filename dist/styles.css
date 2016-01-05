@@ -22,8 +22,9 @@
 
 /* icon bar controls */
 .dos-icon-drawer-controls {
-  width: 80px;
-  height: 100%; }
+  width: 65px;
+  float: left;
+  position: relative; }
   .dos-icon-drawer-controls .iconbar {
     background-color: inherit;
     border: 1px solid green;
@@ -53,18 +54,15 @@
     width: 65px; }
 
 /* content panel areas*/
-.dos-icon-drawer-content .drawer-panel {
-  /* display: none; */
-  background-color: #fff;
-  float: right;
-  border: 1px solid orange;
-  /*  */ }
-
-.dos-icon-drawer-content.active {
-  box-shadow: -5px 5px 0 rgba(31, 40, 51, 0.5);
-  border-left: none;
-  overflow: hidden;
-  background-color: white;
-  color: red;
+.dos-icon-drawer-content {
   display: block;
-  width: 100px; }
+  background-color: white;
+  float: right;
+  width: 91%;
+  width: calc(100% - 65px);
+  height: inherit;
+  overflow-y: scroll; }
+  .dos-icon-drawer-content .drawer-panel {
+    display: none; }
+    .dos-icon-drawer-content .drawer-panel.active {
+      display: block; }

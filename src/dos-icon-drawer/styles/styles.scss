@@ -32,10 +32,10 @@ $drawer-open-width: 300px;
 
 /* icon bar controls */
 .dos-icon-drawer-controls {
-  width: 80px;
-//  float: right;
-  height: 100%;
-//  position: relative; 
+  width: $drawer-closed-width;
+  float: left;
+
+  position: relative; 
   
 // border: 1px solid blue;     
 
@@ -89,21 +89,20 @@ $drawer-open-width: 300px;
 
 /* content panel areas*/
 .dos-icon-drawer-content {
-  .drawer-panel {
-   /* display: none; */  
-    background-color: #fff;
-    float: right ;
-    
-    border: 1px solid orange; /*  */
-  }
+  display: block;
+  background-color: white;
+  float: right; 
+  width: 91%;  // fallback
+  width: calc(100% - #{$drawer-closed-width});   // less width of controls
 
-  &.active {
-    box-shadow: -5px 5px 0 rgba(31,40,51,.5);
-    border-left: none;
-    overflow: hidden;
-    background-color: white;
-    color: red;
-    display: block;
-    width: 100px;     //to-do: fix;
+  height: inherit;
+  overflow-y: scroll; // add vert scroll on overflow
+
+  .drawer-panel {
+    display: none;     // hide inactive panels
+
+    &.active {
+      display: block;  // but show the one active panel      
+    }
   }
 }

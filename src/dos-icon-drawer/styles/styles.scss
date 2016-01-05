@@ -1,0 +1,109 @@
+/* Styles go here */
+
+$drawer-closed-width: 65px;
+$drawer-open-width: 300px;
+
+/* the main icon drawer control */
+.dos-icon-drawer {
+  position: fixed;
+  display: block;
+  right: 0;
+  top:100px;
+  height: 100%;
+  z-index: 1001;
+  background-color: grey;
+  width: $drawer-closed-width;
+  
+  /* border: 1px solid red;     */
+
+  &.open {
+    width: $drawer-open-width;
+  }
+}
+
+.dos-icon-drawer- {
+  padding: 0;
+  height: 100%;
+  width: $drawer-closed-width;
+  background-color: grey;
+  position: relative;
+
+}
+
+/* icon bar controls */
+.dos-icon-drawer-controls {
+  width: 80px;
+//  float: right;
+  height: 100%;
+//  position: relative; 
+  
+// border: 1px solid blue;     
+
+  .iconbar {
+    background-color: inherit;
+    
+    border: 1px solid green;   /*  */
+
+    li {
+      text-align: center;
+      list-style-type: none;
+
+      a {
+        padding: 16px 10px;
+        min-width: 64px;
+        color: blue;
+
+        &:hover,
+        &:active {
+          color: #fff;
+          background-color: black;
+        }
+
+        .badge {
+          position:absolute;
+          top: 6px;
+          left: 36px;
+        }
+
+        .title {
+          font-size: 12px;
+          display: block;
+          overflow: hidden;
+        }
+      }
+    }
+  }
+
+  // the area below the icons is clickable
+  .icon-drawer-toggle {
+    height: 100%;
+    cursor: pointer;
+    padding-left: 0px;
+    width: $drawer-closed-width;
+  }
+}
+
+
+
+
+
+/* content panel areas*/
+.dos-icon-drawer-content {
+  .drawer-panel {
+   /* display: none; */  
+    background-color: #fff;
+    float: right ;
+    
+    border: 1px solid orange; /*  */
+  }
+
+  &.active {
+    box-shadow: -5px 5px 0 rgba(31,40,51,.5);
+    border-left: none;
+    overflow: hidden;
+    background-color: white;
+    color: red;
+    display: block;
+    width: 100px;     //to-do: fix;
+  }
+}

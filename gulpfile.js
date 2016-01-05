@@ -7,6 +7,7 @@ var path = require('path');
 var plumber = require('gulp-plumber');
 var runSequence = require('run-sequence');
 var jshint = require('gulp-jshint');
+var sass = require('gulp-sass');
 
 /**
  * File patterns
@@ -43,6 +44,15 @@ gulp.task('build', function() {
     .pipe(gulp.dest('./dist/'))
     .pipe(uglify())
     .pipe(rename('dos-icon-drawer.min.js'))
+    .pipe(gulp.dest('./dist'));
+});
+
+/**
+ * saas css precompile
+ */ 
+gulp.task('saas', function() {
+  gulp.src('./src/dos-icon-drawer/styles/**/*.scss')
+    .pipe(sass().on('error', sass.logError))
     .pipe(gulp.dest('./dist'));
 });
 
@@ -105,6 +115,10 @@ gulp.task('test-dist-minified', function (done) {
     singleRun: true
   }, done);
 });
+
+
+
+
 
 gulp.task('default', function () {
   runSequence('process-all', 'watch');

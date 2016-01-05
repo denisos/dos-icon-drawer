@@ -1,0 +1,70 @@
+/* Styles go here */
+/* the main icon drawer control */
+.dos-icon-drawer {
+  position: fixed;
+  display: block;
+  right: 0;
+  top: 100px;
+  height: 100%;
+  z-index: 1001;
+  background-color: grey;
+  width: 65px;
+  /* border: 1px solid red;     */ }
+  .dos-icon-drawer.open {
+    width: 300px; }
+
+.dos-icon-drawer- {
+  padding: 0;
+  height: 100%;
+  width: 65px;
+  background-color: grey;
+  position: relative; }
+
+/* icon bar controls */
+.dos-icon-drawer-controls {
+  width: 80px;
+  height: 100%; }
+  .dos-icon-drawer-controls .iconbar {
+    background-color: inherit;
+    border: 1px solid green;
+    /*  */ }
+    .dos-icon-drawer-controls .iconbar li {
+      text-align: center;
+      list-style-type: none; }
+      .dos-icon-drawer-controls .iconbar li a {
+        padding: 16px 10px;
+        min-width: 64px;
+        color: blue; }
+        .dos-icon-drawer-controls .iconbar li a:hover, .dos-icon-drawer-controls .iconbar li a:active {
+          color: #fff;
+          background-color: black; }
+        .dos-icon-drawer-controls .iconbar li a .badge {
+          position: absolute;
+          top: 6px;
+          left: 36px; }
+        .dos-icon-drawer-controls .iconbar li a .title {
+          font-size: 12px;
+          display: block;
+          overflow: hidden; }
+  .dos-icon-drawer-controls .icon-drawer-toggle {
+    height: 100%;
+    cursor: pointer;
+    padding-left: 0px;
+    width: 65px; }
+
+/* content panel areas*/
+.dos-icon-drawer-content .drawer-panel {
+  /* display: none; */
+  background-color: #fff;
+  float: right;
+  border: 1px solid orange;
+  /*  */ }
+
+.dos-icon-drawer-content.active {
+  box-shadow: -5px 5px 0 rgba(31, 40, 51, 0.5);
+  border-left: none;
+  overflow: hidden;
+  background-color: white;
+  color: red;
+  display: block;
+  width: 100px; }

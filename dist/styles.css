@@ -9,17 +9,9 @@
   z-index: 1001;
   background-color: black;
   width: 65px;
-  transition: width .4s, padding-right .1s, background-color .4s;
-  /* border: 1px solid red;     */ }
+  transition: width .4s, padding-right .1s, background-color .4s; }
   .dos-icon-drawer.open {
     width: 300px; }
-
-.dos-icon-drawer- {
-  padding: 0;
-  height: 100%;
-  width: 65px;
-  background-color: grey;
-  position: relative; }
 
 /* icon bar controls */
 .dos-icon-drawer-controls {

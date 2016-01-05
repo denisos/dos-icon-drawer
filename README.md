@@ -8,7 +8,7 @@ Implemented using angularjs (v1.x) directives including:
 
 
 ## Plunkr
-...coming...
+https://plnkr.co/edit/jvjbyKxzJQi6PlQn7CdV?p=preview
 
 
 ## How to use

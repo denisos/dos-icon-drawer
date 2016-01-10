@@ -8,7 +8,9 @@ Implemented using angularjs (v1.x) directives including:
 
 
 ## Plunkr
-https://plnkr.co/edit/jvjbyKxzJQi6PlQn7CdV?p=preview
+[See in acton on plunker](https://plnkr.co/edit/iFxOkXwCLNaYtZYioMgl?p=preview)
+
+old(https://plnkr.co/edit/jvjbyKxzJQi6PlQn7CdV?p=preview)
 
 
 ## How to use

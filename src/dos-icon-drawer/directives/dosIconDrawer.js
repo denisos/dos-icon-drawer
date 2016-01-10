@@ -28,8 +28,8 @@
                                 '<div class="iconbar">' +
                                     '<ul><li class="opener">' +
                                         '<a ng-click="vm.toggleOpen()">' +
-                                            '<span class="fui-arrow-left open-control"></span>' +
-                                            '<span class="fui-arrow-right close-control"></span>' +
+                                            '<span class="arrow-left open-control"></span>' +
+                                            '<span class="arrow-right close-control"></span>' +
                                         '</a>' +
                                     '</li></ul>' +
                                     '<ul class="" ng-class="" ng-transclude>' +

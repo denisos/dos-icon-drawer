@@ -1,21 +1,24 @@
 /* Styles go here */
 
 $drawer-closed-width: 65px;
-$drawer-open-width: 300px;
-$drawer-icon-bar-color: black;
+$drawer-open-width: 400px;
+$drawer-icon-bar-background-color: #fff;  //white
+$drawer-border: #000;
 
 /* the main icon drawer control */
 .dos-icon-drawer {
-  position: fixed;
+  background-color: $drawer-icon-bar-background-color;
+  border: 1px solid $drawer-border;
+  border-radius: 5px;
   display: block;
+  height: 100%;
+  position: fixed;
   right: 0;
   top:100px;
-  height: 100%;
-  z-index: 1001;
-  background-color: $drawer-icon-bar-color;
-  width: $drawer-closed-width;
   transition: width .4s, padding-right .1s, background-color .4s; 
-  
+  width: $drawer-closed-width;
+  z-index: 1001;
+
   &.open {
     width: $drawer-open-width;
   }
@@ -23,16 +26,30 @@ $drawer-icon-bar-color: black;
 
 /* icon bar controls */
 .dos-icon-drawer-controls {
-  width: $drawer-closed-width;
+  width: $drawer-closed-width - 1;
   height: 100%;
   float: left;
-  position: relative;     
+  position: relative;    
+  border-right: 1px solid $drawer-border; 
 
   // icons and title links
   .iconbar {
     background-color: inherit;
-    
-    border: 1px solid green;   /*  */
+
+
+    // slider opener controls to open close
+    .opener {
+        border-bottom: 1px solid $drawer-border;
+        border-top-left-radius: 5px;
+        min-height: 45px;
+
+        a {
+          padding: 2px;
+        }
+
+        .close-control { display: none; }
+        .open-control { display: inline-block; }
+    }
 
     ul {
       padding: 0;
@@ -44,11 +61,10 @@ $drawer-icon-bar-color: black;
         a {
           padding: 16px 10px;
           min-width: 64px;
-          color: blue;
+          color: black;
 
           &:hover,
           &:active {
-            color: #fff;
             cursor: pointer;
           }
 
@@ -84,10 +100,10 @@ $drawer-icon-bar-color: black;
 /* content panel areas*/
 .dos-icon-drawer-content {
   display: block;
-  background-color: white;
+  background-color: $drawer-icon-bar-background-color;
   float: right; 
-  width: 91%;  // fallback
-  width: calc(100% - #{$drawer-closed-width});   // less width of controls
+  width: 90%;  // fallback
+  width: calc(100% - #{$drawer-closed-width} - 10px);   // less width of controls and padding
 
   height: inherit;
   overflow-y: scroll; // add vert scroll on overflow
@@ -100,3 +116,13 @@ $drawer-icon-bar-color: black;
     }
   }
 }
+
+.arrow-left:before {
+  content: '\003C';
+  font-size: 20px;
+}
+.arrow-right:before {
+  content: '\003E';
+  font-size: 20px;
+}
+  

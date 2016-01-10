@@ -1,28 +1,39 @@
 /* Styles go here */
 /* the main icon drawer control */
 .dos-icon-drawer {
-  position: fixed;
+  background-color: #fff;
+  border: 1px solid #000;
+  border-radius: 5px;
   display: block;
+  height: 100%;
+  position: fixed;
   right: 0;
   top: 100px;
-  height: 100%;
-  z-index: 1001;
-  background-color: black;
+  transition: width .4s, padding-right .1s, background-color .4s;
   width: 65px;
-  transition: width .4s, padding-right .1s, background-color .4s; }
+  z-index: 1001; }
   .dos-icon-drawer.open {
     width: 300px; }
 
 /* icon bar controls */
 .dos-icon-drawer-controls {
-  width: 65px;
+  width: 64px;
   height: 100%;
   float: left;
-  position: relative; }
+  position: relative;
+  border-right: 1px solid #000; }
   .dos-icon-drawer-controls .iconbar {
-    background-color: inherit;
-    border: 1px solid green;
-    /*  */ }
+    background-color: inherit; }
+    .dos-icon-drawer-controls .iconbar .opener {
+      border-bottom: 1px solid #000;
+      border-top-left-radius: 5px;
+      min-height: 45px; }
+      .dos-icon-drawer-controls .iconbar .opener a {
+        padding: 2px; }
+      .dos-icon-drawer-controls .iconbar .opener .close-control {
+        display: none; }
+      .dos-icon-drawer-controls .iconbar .opener .open-control {
+        display: inline-block; }
     .dos-icon-drawer-controls .iconbar ul {
       padding: 0; }
       .dos-icon-drawer-controls .iconbar ul li {
@@ -31,9 +42,8 @@
         .dos-icon-drawer-controls .iconbar ul li a {
           padding: 16px 10px;
           min-width: 64px;
-          color: blue; }
+          color: black; }
           .dos-icon-drawer-controls .iconbar ul li a:hover, .dos-icon-drawer-controls .iconbar ul li a:active {
-            color: #fff;
             cursor: pointer; }
           .dos-icon-drawer-controls .iconbar ul li a .badge {
             position: absolute;
@@ -52,13 +62,21 @@
 /* content panel areas*/
 .dos-icon-drawer-content {
   display: block;
-  background-color: white;
+  background-color: #fff;
   float: right;
-  width: 91%;
-  width: calc(100% - 65px);
+  width: 90%;
+  width: calc(100% - 65px - 10px);
   height: inherit;
   overflow-y: scroll; }
   .dos-icon-drawer-content .drawer-panel {
     display: none; }
     .dos-icon-drawer-content .drawer-panel.active {
       display: block; }
+
+.arrow-left:before {
+  content: '\003C';
+  font-size: 20px; }
+
+.arrow-right:before {
+  content: '\003E';
+  font-size: 20px; }
